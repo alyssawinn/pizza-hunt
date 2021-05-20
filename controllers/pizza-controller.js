@@ -50,7 +50,7 @@ const pizzaController = {
     //.findOneAndUpdate() method finds a single document, updates it, and returns the updated document
     //without { new: true }, it will return original document instead of updated document
     updatePizza({ params, body }, res) {
-        Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true })
+        Pizza.findOneAndUpdate({ _id: params.id }, body, { new: true, runValidators: true })
         .then(dbPizzaData => {
             if (!dbPizzaData) {
                 res.status(404).json({ message: 'No pizza found with this id' });
